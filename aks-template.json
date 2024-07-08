@@ -1,0 +1,35 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "resources": [
+    {
+      "type": "Microsoft.ContainerService/managedClusters",
+      "apiVersion": "2022-01-01",
+      "location": "[resourceGroup().location]",
+      "name": "myAKSCluster1",
+      "properties": {
+        "dnsPrefix": "aks-dns",
+        "agentPoolProfiles": [
+          {
+            "name": "demo",
+            "count": 3,
+            "vmSize": "Standard_DS2_v2",
+            "osType": "Linux",
+            "mode": "System"
+          }
+        ],
+        "servicePrincipalProfile": {
+          "clientId": "3a6e8aef-3050-4641-b398-8edca1f0ec5f",
+          "secret": "jUj8Q~_P6DhFlErT0gvTiVOLrTQztLJrDmuhta.y"
+        },
+        "networkProfile": {
+          "networkPlugin": "azure",
+          "serviceCidr": "10.0.0.0/16",
+          "dnsServiceIP": "10.0.0.10",
+          "dockerBridgeCidr": "172.17.0.1/16"
+        }
+      }
+    }
+
+  ]
+}
